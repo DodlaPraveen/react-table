@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 8000;
+
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -43,9 +43,14 @@ app.post("/addname", (req, res) => {
    
    })
 });
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port)
 
 app.listen(port, () => {
-    console.log("Server listening on port " + port);
+    console.log("Server has started succesfully);
 });
 
 
