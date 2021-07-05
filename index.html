@@ -7,8 +7,36 @@
     <title>form data send to backend</title>
 </head>
 <body>
+    <script>
+        function check_Alpha(letters){
+          var regex = /^[a-zA-Z]+$/;
+          if(regex.test(letters.firstName.value) == false){
+         alert("Name must be in alphabets only");
+         letters.firstName.focus();
+         return false;
+          }
+          if(letters.firstName.value == " "){
+            alert("Name Field cannot be left empty");
+            letters.firstName.focus();
+            return false;
+          }
+          return true;
+        } 
+        function check_phone(phno){
+    var regex = /^\(?\d{3}\)?-?\s*-?\d{4}$/;
+    if(regex.test(phno.phoneName.value)){
+  
+   return true;
+    }
+    else{
+      alert("This is not a valid phone number");
+      return false;
+  }
+  }
+      </script>
     <h1>Into to Node and MongoDB</h1>
-        <form method="post" action="/addname">
+
+        <form method="post" action="/addname" onSubmit="return check_Alpha(this) ||  check_phone(this) " >
             <label> Name</label><br>
             <input type="text" name="firstName" placeholder="Enter  name..." required>
             <br>
@@ -16,10 +44,11 @@
             <input type="email" name="emailName" placeholder="Enter email..." required>
             <br>
             <label>Phone Number </label><br>
-            <input type="number" name="phoneName" placeholder="Enter phone number..." required>
+            <input type="text" name="phoneName" placeholder="Enter phone number..." required>
             <br>
             <br>
             <input type="submit" value="submit">
         </form>
+        
 </body>
 </html>
